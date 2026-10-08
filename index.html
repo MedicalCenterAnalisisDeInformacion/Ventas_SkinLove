@@ -230,9 +230,9 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
     <div class="kpi" style="--ac:#9A9A9A"><div class="kpi-label">Unidades vendidas</div><div class="kpi-value" id="k-uni">—</div><div class="kpi-sub">Ventas mes en curso</div></div>
     <div class="kpi" style="--ac:#808080"><div class="kpi-label">Ventas $</div><div class="kpi-value brand" id="k-ventas">—</div><div class="kpi-sub" id="k-ventas-s">—</div></div>
     <div class="kpi" style="--ac:#5A5A5A"><div class="kpi-label">Utilidad</div><div class="kpi-value brand" id="k-util">—</div><div class="kpi-sub" id="k-util-sub">Margen: —</div></div>
-    <div class="kpi" style="--ac:#3D3D3D"><div class="kpi-label">Tickets</div><div class="kpi-value" id="k-tkt">—</div><div class="kpi-sub" id="k-tkt-sub">Volumen de ventas</div></div>
-    <div class="kpi" style="--ac:#A8A8A8"><div class="kpi-label">Ventas $ promedio por ticket</div><div class="kpi-value" id="k-vtkt">—</div><div class="kpi-sub" id="k-vtkt-sub">Ventas $ ÷ Tickets</div></div>
-    <div class="kpi" style="--ac:#C4C4C4"><div class="kpi-label">Unidades promedio por Ticket</div><div class="kpi-value" id="k-utkt">—</div><div class="kpi-sub" id="k-utkt-sub">Unidades ÷ Tickets</div></div>
+    <div class="kpi" style="--ac:#3D3D3D"><div class="kpi-label">Facturas</div><div class="kpi-value" id="k-tkt">—</div><div class="kpi-sub" id="k-tkt-sub">Volumen de ventas</div></div>
+    <div class="kpi" style="--ac:#A8A8A8"><div class="kpi-label">Ventas $ promedio por factura</div><div class="kpi-value" id="k-vtkt">—</div><div class="kpi-sub" id="k-vtkt-sub">Ventas $ ÷ Facturas</div></div>
+    <div class="kpi" style="--ac:#C4C4C4"><div class="kpi-label">Unidades promedio por Factura</div><div class="kpi-value" id="k-utkt">—</div><div class="kpi-sub" id="k-utkt-sub">Unidades ÷ Facturas</div></div>
   </div>
   <div class="tc">
     <div class="card-head">
@@ -241,14 +241,14 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
     </div>
     <div class="table-scale-wrap">
     <table>
-      <thead><tr><th>Fecha</th><th>Día</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Tickets</th></tr></thead>
+      <thead><tr><th>Fecha</th><th>Día</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Facturas</th></tr></thead>
       <tbody id="tabla-body"></tbody>
     </table>
     </div>
   </div>
   <div class="charts-row">
     <div class="cc"><div class="card-head" style="margin-bottom:.4rem"><div><div class="card-title">Ventas $</div><div class="card-sub">Volumen diario · Canales de venta seleccionados</div></div></div><div class="cw"><canvas id="chart-ventas"></canvas></div></div>
-    <div class="cc"><div class="card-head" style="margin-bottom:.4rem"><div><div class="card-title">No. de Tickets</div><div class="card-sub">Volumen diario · Canales de venta seleccionados</div></div></div><div class="cw"><canvas id="chart-tickets"></canvas></div></div>
+    <div class="cc"><div class="card-head" style="margin-bottom:.4rem"><div><div class="card-title">No. de Facturas</div><div class="card-sub">Volumen diario · Canales de venta seleccionados</div></div></div><div class="cw"><canvas id="chart-tickets"></canvas></div></div>
   </div>
   <hr class="section-divider">
   <div class="tc" style="margin-bottom:.9rem">
@@ -258,7 +258,7 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
     </div>
     <div class="table-scale-wrap">
     <table>
-      <thead><tr><th>Canal de Venta</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Tickets</th></tr></thead>
+      <thead><tr><th>Canal de Venta</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Facturas</th></tr></thead>
       <tbody id="tabla-sucursal-actual"></tbody>
     </table>
     </div>
@@ -270,7 +270,7 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
         <button class="tab-btn active" id="btn-hs-ventas"   onclick="changeSucMetric('ventas')">Ventas c/Desc</button>
         <button class="tab-btn"        id="btn-hs-utilidad" onclick="changeSucMetric('utilidad')">Utilidad</button>
         <button class="tab-btn"        id="btn-hs-unidades" onclick="changeSucMetric('unidades')">Unidades</button>
-        <button class="tab-btn"        id="btn-hs-tickets"  onclick="changeSucMetric('tickets')">Tickets</button>
+        <button class="tab-btn"        id="btn-hs-tickets"  onclick="changeSucMetric('tickets')">Facturas</button>
       </div>
     </div>
     <div class="cw" id="sucursalactual-chart-wrap" style="height:340px"><canvas id="chart-sucursalactual"></canvas></div>
@@ -309,9 +309,9 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
     <div class="kpi" style="--ac:#9A9A9A"><div class="kpi-label">Unidades vendidas</div><div class="kpi-value" id="ka-uni">—</div><div class="kpi-sub">Acumulado según selección</div></div>
     <div class="kpi" style="--ac:#808080"><div class="kpi-label">Ventas $</div><div class="kpi-value brand" id="ka-ventas">—</div><div class="kpi-sub" id="ka-ventas-s">—</div></div>
     <div class="kpi" style="--ac:#5A5A5A"><div class="kpi-label">Utilidad</div><div class="kpi-value brand" id="ka-util">—</div><div class="kpi-sub" id="ka-util-sub">Margen: —</div></div>
-    <div class="kpi" style="--ac:#3D3D3D"><div class="kpi-label">Tickets</div><div class="kpi-value" id="ka-tkt">—</div><div class="kpi-sub" id="ka-tkt-sub">Volumen de ventas</div></div>
-    <div class="kpi" style="--ac:#A8A8A8"><div class="kpi-label">Ventas $ promedio por ticket</div><div class="kpi-value" id="ka-vtkt">—</div><div class="kpi-sub" id="ka-vtkt-sub">Ventas $ ÷ Tickets</div></div>
-    <div class="kpi" style="--ac:#C4C4C4"><div class="kpi-label">Unidades promedio por Ticket</div><div class="kpi-value" id="ka-utkt">—</div><div class="kpi-sub" id="ka-utkt-sub">Unidades ÷ Tickets</div></div>
+    <div class="kpi" style="--ac:#3D3D3D"><div class="kpi-label">Facturas</div><div class="kpi-value" id="ka-tkt">—</div><div class="kpi-sub" id="ka-tkt-sub">Volumen de ventas</div></div>
+    <div class="kpi" style="--ac:#A8A8A8"><div class="kpi-label">Ventas $ promedio por factura</div><div class="kpi-value" id="ka-vtkt">—</div><div class="kpi-sub" id="ka-vtkt-sub">Ventas $ ÷ Facturas</div></div>
+    <div class="kpi" style="--ac:#C4C4C4"><div class="kpi-label">Unidades promedio por Factura</div><div class="kpi-value" id="ka-utkt">—</div><div class="kpi-sub" id="ka-utkt-sub">Unidades ÷ Facturas</div></div>
   </div>
   <p class="kpi-note" id="nota-consolidado" style="display:none"></p>
   <div class="tc">
@@ -320,7 +320,7 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
     </div>
     <div class="table-scale-wrap">
     <table>
-      <thead><tr><th>Período</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Tickets</th></tr></thead>
+      <thead><tr><th>Período</th><th class="r">Unidades</th><th class="r">Ventas $</th><th class="r">Utilidad</th><th class="r">Margen</th><th class="r">Facturas</th></tr></thead>
       <tbody id="tabla-historico"></tbody>
     </table>
     </div>
@@ -332,7 +332,7 @@ tr.fq-parent td{padding-top:10px;padding-bottom:10px}
         <button class="tab-btn active" id="btn-h-ventas"   onclick="changeHistMetric('ventas')">Ventas c/Desc</button>
         <button class="tab-btn"        id="btn-h-utilidad" onclick="changeHistMetric('utilidad')">Utilidad</button>
         <button class="tab-btn"        id="btn-h-unidades" onclick="changeHistMetric('unidades')">Unidades</button>
-        <button class="tab-btn"        id="btn-h-tickets"  onclick="changeHistMetric('tickets')">Tickets</button>
+        <button class="tab-btn"        id="btn-h-tickets"  onclick="changeHistMetric('tickets')">Facturas</button>
       </div>
     </div>
     <div class="cw hist-chart"><canvas id="chart-historico"></canvas></div>
@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const CURRENT_PERIOD = "Oct-26";
     const TICKETS_CONS = {"Abr-25": 88, "May-25": 149, "Jun-25": 121, "Jul-25": 144, "Ago-25": 130, "Sep-25": 132, "Oct-25": 155, "Nov-25": 134, "Dic-25": 193, "Ene-26": 141, "Feb-26": 164, "Mar-26": 162, "Abr-26": 183, "May-26": 164, "Jun-26": 194, "Jul-26": 190, "Ago-26": 171};
     const HAY_CONSOLIDADO = Object.keys(TICKETS_CONS).length > 0;
-    const NOTA_CONSOLIDADO = '* Los períodos anteriores a Sep-2026 no cuentan con detalle de tickets por canal de venta, por esta razón las Ventas y Unidades Promedio por Ticket se calculan, para estos períodos, usando los totales.';
+    const NOTA_CONSOLIDADO = '* Los períodos anteriores a Sep-2026 no cuentan con detalle de facturas por canal de venta, por esta razón las Ventas y Unidades Promedio por Factura se calculan, para estos períodos, usando los totales.';
     const NOTA_TENDENCIA = '* Los períodos sin desglose se muestran como una barra única con el total acumulado. Al filtrar canales el cálculo de la tasa de crecimiento se omite con el salto entre períodos sin desglose y períodos con desglose.';
     function periodosConsolidadosEn(data){
         return [...new Set(data.map(r => r.PeriodoLabel))]
@@ -1043,9 +1043,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('k-tkt').textContent       = fN(totTk);
         document.getElementById('k-tkt-sub').textContent   = 'Volumen de ventas';
         document.getElementById('k-vtkt').textContent      = totTk>0 ? fF(totV/totTk) : '—';
-        document.getElementById('k-vtkt-sub').textContent  = 'Ventas $ ÷ Tickets';
+        document.getElementById('k-vtkt-sub').textContent  = 'Ventas $ ÷ Facturas';
         document.getElementById('k-utkt').textContent      = totTk>0 ? (totUn/totTk).toFixed(1) : '—';
-        document.getElementById('k-utkt-sub').textContent  = 'Unidades ÷ Tickets';
+        document.getElementById('k-utkt-sub').textContent  = 'Unidades ÷ Facturas';
         updateTabla(dates, byDate);
         updateChart('ventas',  dates, byDate, activeSucs, multi);
         updateChart('tickets', dates, byDate, activeSucs, multi);
@@ -1066,10 +1066,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const dn = DAYS[new Date(d+'T12:00:00').getDay()];
             const mAbr = MESES_ABR[parseInt(d.slice(5,7),10)-1];
             tUn+=r.unidades; tV+=r.ventas; tU+=r.utilidad; tTk+=r.tickets;
-            return `<tr><td class="date" data-label="Fecha">${d.slice(8)} ${mAbr}</td><td class="dayname" data-label="Día">${dn}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${pill}">${fP(mg)}</span></td><td class="r" data-label="Tickets"><b>${fN(r.tickets)}</b></td></tr>`;
+            return `<tr><td class="date" data-label="Fecha">${d.slice(8)} ${mAbr}</td><td class="dayname" data-label="Día">${dn}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${pill}">${fP(mg)}</span></td><td class="r" data-label="Facturas"><b>${fN(r.tickets)}</b></td></tr>`;
         }).join('');
         const totMg = tV>0 ? tU/tV : 0;
-        tbody.innerHTML = rows + `<tr class="total-row"><td data-label="" colspan="2"><b>TOTAL PERÍODO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Tickets">${fN(tTk)}</td></tr>`;
+        tbody.innerHTML = rows + `<tr class="total-row"><td data-label="" colspan="2"><b>TOTAL PERÍODO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Facturas">${fN(tTk)}</td></tr>`;
     }
     function updateChartGeneric(chartId, field, sourceData, dates, byDate, activeSucs, multi){
         dc(chartId);
@@ -1086,7 +1086,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 pointRadius:3.5, pointHitRadius:20, pointHoverRadius:6, tension:0.12, fill:false
               }))
             : [{
-                label: isVentas ? 'Ventas c/Desc' : 'Cantidad de Tickets',
+                label: isVentas ? 'Ventas c/Desc' : 'Cantidad de Facturas',
                 data: dates.map(d => byDate[d] ? byDate[d][field] : 0),
                 borderColor: monoColor, backgroundColor: monoColor+'08', borderWidth:2.2,
                 pointRadius:3.5, pointHitRadius:20, pointHoverRadius:6, tension:0.12, fill:true
@@ -1222,10 +1222,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const rows = data.map(r => {
             const mg = r.ventas>0 ? r.utilidad/r.ventas : 0;
             tUn+=r.unidades; tV+=r.ventas; tU+=r.utilidad; tTk+=r.tickets;
-            return `<tr><td data-label="Canal de Venta"><span style="display:inline-block;width:8px;height:8px;border-radius:4px;background:${SC[r.NombreSucursal]||'#888'};margin-right:7px"></span><b>${r.NombreSucursal}</b></td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${mg>=.50?'hi':'mi'}">${fP(mg)}</span></td><td class="r" data-label="Tickets">${fN(r.tickets)}</td></tr>`;
+            return `<tr><td data-label="Canal de Venta"><span style="display:inline-block;width:8px;height:8px;border-radius:4px;background:${SC[r.NombreSucursal]||'#888'};margin-right:7px"></span><b>${r.NombreSucursal}</b></td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${mg>=.50?'hi':'mi'}">${fP(mg)}</span></td><td class="r" data-label="Facturas">${fN(r.tickets)}</td></tr>`;
         }).join('');
         const totMg = tV>0 ? tU/tV : 0;
-        tbody.innerHTML = rows + `<tr class="total-row"><td data-label=""><b>TOTAL MES EN CURSO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Tickets">${fN(tTk)}</td></tr>`;
+        tbody.innerHTML = rows + `<tr class="total-row"><td data-label=""><b>TOTAL MES EN CURSO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Facturas">${fN(tTk)}</td></tr>`;
     }
     function updateChartSucursalActual(){
         dc('sucursalactual');
@@ -1244,7 +1244,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 datasets: [
                     {
                         type:'bar',
-                        label: currentSucMetric==='ventas'?'Ventas c/Desc':currentSucMetric==='utilidad'?'Utilidad':currentSucMetric==='unidades'?'Unidades':'Tickets',
+                        label: currentSucMetric==='ventas'?'Ventas c/Desc':currentSucMetric==='utilidad'?'Utilidad':currentSucMetric==='unidades'?'Unidades':'Facturas',
                         data: data.map(r => r[currentSucMetric]),
                         backgroundColor: barFill,
                         borderColor: barBorder,
@@ -1317,9 +1317,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('ka-tkt').textContent       = fN(totTk) + marcaCons;
         document.getElementById('ka-tkt-sub').textContent   = 'Volumen de ventas';
         document.getElementById('ka-vtkt').textContent      = promT>0 ? fF(promV/promT) + marcaCons : '—';
-        document.getElementById('ka-vtkt-sub').textContent  = 'Ventas $ ÷ Tickets' + sufijoBase;
+        document.getElementById('ka-vtkt-sub').textContent  = 'Ventas $ ÷ Facturas' + sufijoBase;
         document.getElementById('ka-utkt').textContent      = promT>0 ? (promU/promT).toFixed(1) + marcaCons : '—';
-        document.getElementById('ka-utkt-sub').textContent  = 'Unidades ÷ Tickets' + sufijoBase;
+        document.getElementById('ka-utkt-sub').textContent  = 'Unidades ÷ Facturas' + sufijoBase;
     }
     function updateAcumulado(){
         updateKPIsAcumulado();
@@ -1370,12 +1370,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const mg = r.ventas>0 ? r.utilidad/r.ventas : 0;
             const tkCell = `<b>${fN(r.tickets)}</b>`
                 + (r.consolidado ? ' <span title="Sin detalle por canal de venta: el total corresponde a todos los canales" style="color:#c4c4c4;font-weight:700">*</span>' : '');
-            return `<tr><td class="date" data-label="Período">${r.PeriodoLabel}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${mg>=.50?'hi':'mi'}">${fP(mg)}</span></td><td class="r" data-label="Tickets">${tkCell}</td></tr>`;
+            return `<tr><td class="date" data-label="Período">${r.PeriodoLabel}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${mg>=.50?'hi':'mi'}">${fP(mg)}</span></td><td class="r" data-label="Facturas">${tkCell}</td></tr>`;
         }).join('');
         const totTkTexto = fN(tTk) + (huboConsolidado ? ' *' : '');
-        const notaPieCons = '* No existe desglose de tickets por canal de venta. Se muestra acumulado.';
+        const notaPieCons = '* No existe desglose de facturas por canal de venta. Se muestra acumulado.';
         const pieEstilo = 'font-size:.65rem;color:#a3a3a3;text-align:right;border:none;padding-top:4px';
-        tbody.innerHTML = rows + `<tr class="total-row"><td data-label=""><b>TOTAL HISTÓRICO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Tickets">${totTkTexto}</td></tr>`
+        tbody.innerHTML = rows + `<tr class="total-row"><td data-label=""><b>TOTAL HISTÓRICO</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Facturas">${totTkTexto}</td></tr>`
             + (huboConsolidado ? `<tr><td colspan="6" style="${pieEstilo}">${notaPieCons}</td></tr>` : '');
         const activeSucs = getActiveSucs();
         const multi      = activeSucs.length > 1;
@@ -1424,14 +1424,14 @@ document.addEventListener("DOMContentLoaded", function() {
               })
             : [{
                 type:'bar',
-                label: currentHistMetric==='ventas'?'Ventas c/Desc':currentHistMetric==='utilidad'?'Utilidad':currentHistMetric==='unidades'?'Unidades':'Tickets',
+                label: currentHistMetric==='ventas'?'Ventas c/Desc':currentHistMetric==='utilidad'?'Utilidad':currentHistMetric==='unidades'?'Unidades':'Facturas',
                 data: sorted.map(r => esCons(r) ? null : r[currentHistMetric]),
                 backgroundColor:'#808080cc', borderColor:'#5A5A5A',
                 borderWidth:1, borderRadius:4, yAxisID:'y',
               }];
         if(hayCons){
             barDatasets.push({
-                type:'bar', label:'Tickets acumulados *', yAxisID:'y',
+                type:'bar', label:'Facturas acumuladas *', yAxisID:'y',
                 data: sorted.map(r => esCons(r) ? r.tickets : null),
                 backgroundColor:'#b5b5b5cc', borderColor:'#7A7A7A',
                 borderWidth:1, borderRadius: multi ? 3 : 4,
@@ -2038,10 +2038,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const dn = DAYS[new Date(d+'T12:00:00').getDay()];
             const mAbr = MESES_ABR[parseInt(d.slice(5,7),10)-1];
             tUn+=r.unidades; tV+=r.ventas; tU+=r.utilidad; tTk+=r.tickets;
-            return `<tr><td class="date" data-label="Fecha">${d.slice(8)} ${mAbr}</td><td class="dayname" data-label="Día">${dn}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${pill}">${fP(mg)}</span></td><td class="r" data-label="Tickets"><b>${fN(r.tickets)}</b></td></tr>`;
+            return `<tr><td class="date" data-label="Fecha">${d.slice(8)} ${mAbr}</td><td class="dayname" data-label="Día">${dn}</td><td class="r" data-label="Unidades">${fN(r.unidades)}</td><td class="r" data-label="Ventas $"><b>${fF(r.ventas)}</b></td><td class="r" data-label="Utilidad">${fF(r.utilidad)}</td><td class="r" data-label="Margen"><span class="pill ${pill}">${fP(mg)}</span></td><td class="r" data-label="Facturas"><b>${fN(r.tickets)}</b></td></tr>`;
         }).join('');
         const totMg = tV>0 ? tU/tV : 0;
-        tbody.innerHTML = rows + `<tr class="total-row"><td data-label="" colspan="2"><b>TOTAL ${info.label.toUpperCase()} ${info.anio}</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Tickets">${fN(tTk)}</td></tr>`;
+        tbody.innerHTML = rows + `<tr class="total-row"><td data-label="" colspan="2"><b>TOTAL ${info.label.toUpperCase()} ${info.anio}</b></td><td class="r" data-label="Unidades">${fN(tUn)}</td><td class="r" data-label="Ventas $">${fF(tV)}</td><td class="r" data-label="Utilidad">${fF(tU)}</td><td class="r" data-label="Margen"><span class="pill ${totMg>=.50?'hi':'mi'}">${fP(totMg)}</span></td><td class="r" data-label="Facturas">${fN(tTk)}</td></tr>`;
         const activeSucs = getActiveSucs();
         const multi      = activeSucs.length > 1;
         updateChartGeneric('resumen-'+slug+'-ventas',  'ventas',  data, valid, byDate, activeSucs, multi);

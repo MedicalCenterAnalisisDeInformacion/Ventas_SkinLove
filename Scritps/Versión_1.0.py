@@ -9,8 +9,8 @@ from datetime import date, timedelta
 EXCEL_PATH  = r"C:/Users/adelarosa/Documents/Reportes/Dashboards/DashboardVentasDiarias_SkinLove/2026/10_Octubre_2026/07-10-2026/Dataset.xlsx"
 OUTPUT_PATH = r"C:/Users/adelarosa/Documents/Reportes/Dashboards/DashboardVentasDiarias_SkinLove/2026/10_Octubre_2026/07-10-2026/index.html"
 BOL_EXCLUIR = ["BOLEUCH", "BOLEUGDE", "BOLEUMIN"]
-FECHA_BASE  = date(2026, 10, 5)
-ES_CIERRE_MES = False
+FECHA_BASE  = date(2026, 10, 4)
+FECHA_PROCESO = date(2026, 10, 7)
 CLAVE_CONSOLIDADA = [2801]
 LOGO_PATH = r"C:\Users\adelarosa\Documents\Reportes\Dashboards\DashboardVentasDiarias_SkinLove\Logos\logo.png"
 MESES_ES = ["enero","febrero","marzo","abril","mayo","junio",
@@ -59,9 +59,10 @@ def _cargar_imagen_b64(path: str) -> str:
         print(f"⚠️  No se encontró el logo en {path}; se omite del header.")
         return ""
     return base64.b64encode(p.read_bytes()).decode("utf-8")
-def formatear_fechas(base: date, es_cierre: bool = False):
-    ultimo_dia_dato = base if es_cierre else base - timedelta(days=1)
-    fecha_reporte = f"{base.day} de {MESES_ES[base.month-1].capitalize()} de {base.year}"
+def formatear_fechas(base: date, proceso: date = None):
+    proceso = proceso or base
+    ultimo_dia_dato = base
+    fecha_reporte = f"{proceso.day} de {MESES_ES[proceso.month-1].capitalize()} de {proceso.year}"
     dia_semana    = DIAS_ES[ultimo_dia_dato.weekday()].capitalize()
     fecha_info    = f"{dia_semana}, {ultimo_dia_dato.day} de {MESES_ES[ultimo_dia_dato.month-1]} de {ultimo_dia_dato.year}"
     mes_header    = MESES_ES[base.month-1].capitalize()
@@ -255,7 +256,7 @@ def procesar_fabricantes(vm, art_dim, suc, bol_list):
     for c in ["ventas","utilidad"]:
         agg[c] = agg[c].round(2)
     return agg
-def procesar_pronostico(agg, objetivos, suc, fecha_base, es_cierre=False):
+def procesar_pronostico(agg, objetivos, suc, fecha_base):
     """Pronóstico de cierre de mes por sucursal.
 
     Skin Love NO maneja presupuestos de venta, así que aquí no hay ninguna
@@ -273,10 +274,7 @@ def procesar_pronostico(agg, objetivos, suc, fecha_base, es_cierre=False):
     $0 no aporta información y sólo alarga la tabla.
     """
     dias_mes = calendar.monthrange(fecha_base.year, fecha_base.month)[1]
-    if es_cierre:
-        fecha_max_global = pd.Timestamp(fecha_base)
-    else:
-        fecha_max_global = pd.Timestamp(fecha_base) - pd.Timedelta(days=1)
+    fecha_max_global = pd.Timestamp(fecha_base)
     primer_dia_mes = pd.Timestamp(year=fecha_base.year, month=fecha_base.month, day=1)
     fin_mes = pd.Timestamp(year=fecha_base.year, month=fecha_base.month, day=dias_mes)
     resumen_ventas = agg.groupby("NombreSucursal").agg(
@@ -2595,9 +2593,9 @@ def main():
         top_art_agg     = procesar_top_articulos(vm, art_dim, suc, BOL_EXCLUIR)
         lineas_cat_agg  = procesar_lineas_categoria(vm, art_dim, suc, BOL_EXCLUIR)
         fabricantes_agg = procesar_fabricantes(vm, art_dim, suc, BOL_EXCLUIR)
-        pronostico_agg  = procesar_pronostico(agg, objetivos_df, suc, FECHA_BASE, es_cierre=ES_CIERRE_MES)
+        pronostico_agg  = procesar_pronostico(agg, objetivos_df, suc, FECHA_BASE)
         print("Generando HTML final...")
-        fecha_reporte, fecha_info, mes_header = formatear_fechas(FECHA_BASE, es_cierre=ES_CIERRE_MES)
+        fecha_reporte, fecha_info, mes_header = formatear_fechas(FECHA_BASE, proceso=FECHA_PROCESO)
         current_period_label = periodo_label_actual(FECHA_BASE)
         html = generar_html(agg, linea_agg, historico_agg, top_art_agg, lineas_cat_agg, fabricantes_agg,
                             pronostico_agg, lista_sucursales, fecha_reporte, fecha_info, mes_header,
